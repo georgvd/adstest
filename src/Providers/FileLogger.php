@@ -27,6 +27,13 @@ class FileLogger implements ILogger
   public function log($eventData)
   {
     if ($this->isEnabled){
+      $dirname = dirname($this->fileName);
+      if (!file_exists($dirname)){
+        if (!mkdir($dirname, 0777, true)){
+          throw new \RuntimeException();
+        }
+      }
+
       $record = '['.date('c').'] '.$eventData."\n";
 
       if (false === file_put_contents($this->fileName, $record, FILE_APPEND | LOCK_EX)){
