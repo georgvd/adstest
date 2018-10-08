@@ -2,13 +2,15 @@
 
 namespace AdsTest\Models;
 
-use AdsTest\Application;
+use AdsTest\Providers\DictCurrency;
 
 /**
  * Модель данных объявления
  */
 class AdsItem
 {
+  const PRICE_CURRENCY = DictCurrency::CURRENCY_USD;
+
   /** @var int ID объявления */
   public $id;
 
@@ -31,20 +33,19 @@ class AdsItem
   public $idUser;
 
   /**
-   * Возвращает поле $this->price в валюте $idCurrency
-   * @param int $idCurrency ID валюты
+   * Возвращает поле $this->price в валюте $idCurrencyTo
+   * @param DictCurrency $dictCurrency
+   * @param int|null $idCurrencyTo ID валюты
    * @return float
    */
-  public function getPrice($idCurrency)
+  public function getPrice(DictCurrency $dictCurrency, $idCurrencyTo = null)
   {
-    $app = Application::getInstance();
-    $currencies = $app->getDictCurrency();
+    $price = $this->price;
 
-    $priceConverted = $currencies->getRecordById($currencies::CURRENCY_USD)->cource * $this->price;
-    if ($idCurrency != $currencies::CURRENCY_RUB){
-      $priceConverted /= $currencies->getRecordById($idCurrency)->cource;
+    if ($idCurrencyTo !== null){
+      $price = $dictCurrency->convertPrice($price, $this::PRICE_CURRENCY, $idCurrencyTo);
     }
 
-    return $priceConverted;
+    return $price;
   }
 }

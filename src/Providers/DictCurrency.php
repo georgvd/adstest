@@ -72,4 +72,15 @@ class DictCurrency implements IDictionary
 
     return $record;
   }
+
+  /**
+   * @param float $price
+   * @param int $idCurrencyFrom
+   * @param int $idCurrencyTo
+   * @return float
+   */
+  public function convertPrice($price, $idCurrencyFrom, $idCurrencyTo)
+  {
+    return $price * $this->getRecordById($idCurrencyFrom)->cource / $this->getRecordById($idCurrencyTo)->cource;
+  }
 }
