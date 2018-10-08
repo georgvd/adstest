@@ -23,12 +23,13 @@ interface IDictionary
    */
   public function getRecordById($id);
 
-  /**
+  /** TODO Если потребуется:
    * Проверяет существование записи с указанным id
    * @param mixed $id
    * @return boolean
+   *
+   * public function isRecordExists($id);
    */
-  public function isRecordExists($id);
 
 }
 

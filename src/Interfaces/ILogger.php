@@ -15,5 +15,10 @@ interface ILogger
    * @return void
    */
   public function setEnabled($isEnabled);
+
+  /**
+   * @return boolean
+   */
+  public function isEnabled();
 }
 

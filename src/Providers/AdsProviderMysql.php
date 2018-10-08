@@ -2,10 +2,9 @@
 
 namespace AdsTest\Providers;
 
-use AdsTest\Interfaces\IAdsProvider;
 use AdsTest\Models\AdsItem;
 
-class AdsProviderMysql implements IAdsProvider
+class AdsProviderMysql extends AdsProvider
 {
   public function getLegacyFuncName()
   {
@@ -14,9 +13,7 @@ class AdsProviderMysql implements IAdsProvider
 
   public function getItem($id)
   {
-    $func = $this->getLegacyFuncName();
-
-    $row = $func($id);
+    $row = $this->legacyCall($id);
     if (!$row){
       return false;
     }

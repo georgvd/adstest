@@ -39,6 +39,7 @@ class DictCurrency implements IDictionary
     }
   }
 
+  /* TODO если нужно:
   public function isRecordExists($id)
   {
     if (false === filter_var($id, FILTER_VALIDATE_INT)){
@@ -51,6 +52,7 @@ class DictCurrency implements IDictionary
 
     return isset($this->table[(int)$id]);
   }
+  */
 
   public function getRecordById($id)
   {

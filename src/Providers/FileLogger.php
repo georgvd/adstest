@@ -24,6 +24,11 @@ class FileLogger implements ILogger
     $this->isEnabled = !!$isEnabled;
   }
 
+  public function isEnabled()
+  {
+    return $this->isEnabled;
+  }
+
   public function log($eventData)
   {
     if ($this->isEnabled){
