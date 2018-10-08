@@ -35,7 +35,7 @@ class AdsItem
   /**
    * Возвращает поле $this->price в валюте $idCurrencyTo
    * @param DictCurrency $dictCurrency
-   * @param int|null $idCurrencyTo ID валюты
+   * @param int|null $idCurrencyTo ID валюты. По умолчанию USD
    * @return float
    */
   public function getPrice(DictCurrency $dictCurrency, $idCurrencyTo = null)
